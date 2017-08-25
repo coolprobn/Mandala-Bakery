@@ -9,11 +9,17 @@ import {
 } from 'react-native';
 import Login from "./components/login/login";
 import Register from "./components/register/register";
+import Product from "./components/product/products";
+import ProductItem from "./components/product/productItem";
+import Test from "./components/test";
+import Cake from "./components/product/cake/cake";
+import Cookie from "./components/product/cookie/cookie";
+import {Drawer} from "./router/Drawer";
 
 export default class App extends Component {
   render() {
     return (
-        <Register/>
+        <Drawer/>
     );
   }
 }

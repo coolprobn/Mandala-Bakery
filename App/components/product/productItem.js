@@ -25,12 +25,37 @@ export default class ProductItem extends Component {
     });
   }
 
+  image(){
+    if(this.props.category!="coffee"){
+      return(
+        <Image source={ImageMap[this.props.image]} style={styles.productImage}/>)
+    }
+  }
+
+  addToCart(){
+    if(this.props.category=="cake") {
+      return(
+        <View>
+          <StarRating
+            disabled={false}
+            maxStars={5}
+            rating={this.state.starCount}
+            selectedStar={(rating) => this.onStarRatingPress(rating)} starColor={'gold'} starSize={30}/>
+          <TouchableNativeFeedback useForeground={true}>
+            <View style={styles.addToCart}>
+              <Text style={{textAlign: 'center'}}>
+                Add To Cart
+              </Text>
+            </View>
+          </TouchableNativeFeedback>
+        </View>)
+    }
+  }
   render() {
 
     return (
-      <View style={styles.productItem}>
-
-        <Image source={ImageMap[this.props.image]} style={styles.productImage}/>
+      <View style={styles.productItem} >
+        {this.image()}
 
         <View style={styles.productDesc} >
           <Text style={styles.productDescText}>
@@ -41,19 +66,7 @@ export default class ProductItem extends Component {
           </Text>
         </View>
 
-        <StarRating
-          disabled={false}
-          maxStars={5}
-          rating={this.state.starCount}
-          selectedStar={(rating) => this.onStarRatingPress(rating)} starColor={'gold'} starSize={30}/>
-
-        <TouchableNativeFeedback useForeground={true}>
-          <View style={styles.addToCart}>
-            <Text style={{textAlign: 'center'}}>
-              Add To Cart
-            </Text>
-          </View>
-        </TouchableNativeFeedback>
+        {this.addToCart()}
 
 
 

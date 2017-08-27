@@ -12,6 +12,7 @@ import {NavigationActions} from 'react-navigation';
 
 import Products from "../components/product/products";
 import Cake from "../components/product/cake/cake";
+import Cookie from "../components/product/cookie/cookie";
 
 
 export const ProductStack = StackNavigator({
@@ -29,6 +30,12 @@ export const ProductStack = StackNavigator({
     },
   },
 
+  Cookie: {
+    screen: Cookie,
+    navigationOptions: {
+      title: 'Cookie',
+    },
+  },
 },
   {
 

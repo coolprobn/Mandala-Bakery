@@ -16,7 +16,7 @@ export default class Products extends Component {
         <ProductList name="Bread" color="#BF94E4"/>
         <ProductList name="Coffee" color="#BCD4E6"/>
         <ProductList name="Pastry" color="#FAEBD7"/>
-        <ProductList name="Cookie" color="#1693A5"/>
+        <ProductList name="Cookie" color="#1693A5" navigate={this.props.navigation.navigate}/>
       </Image>
     );
   }

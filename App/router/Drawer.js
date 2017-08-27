@@ -19,6 +19,6 @@ export const Drawer = DrawerNavigator({
 
   Login: {
     screen: LoginStack,
-  }
+  },
 
 });

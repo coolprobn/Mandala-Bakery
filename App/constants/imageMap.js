@@ -16,6 +16,10 @@ const ImageMap = {
   'chocolateTruffle': require('../images/pineappleCake.jpg'),
   'sugarLess': require('../images/pineappleCake.jpg'),
   'iceCream': require('../images/pineappleCake.jpg'),
+  'cookie': require('../images/cookie.png'),
+  'peanutButterCookie': require('../images/peanutButterCookie.png'),
+  'cashewNutCookie': require('../images/cashewNut.png'),
+  'chocoCookie': require('../images/chocoCookie.png'),
 };
 
 export default ImageMap;

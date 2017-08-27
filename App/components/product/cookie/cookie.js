@@ -15,33 +15,13 @@ export default class Cookie extends Component {
         <ScrollView>
           <View style={styles.vertical}>
             <View style={styles.horizontal} >
-              <ProductItem name="Pineapple" price={550} image="pineapple" category="cookie"/>
-              <ProductItem name="Black Forest" price={600} image="blackForest" category="cookie"/>
+              <ProductItem name="Cookie" price={550} image="cookie" category="cookie"/>
+              <ProductItem name="Peanut Butter" price={600} image="peanutButtterCookie" category="cookie"/>
             </View>
 
             <View style={styles.horizontal}>
-              <ProductItem name="White Forest" price={650} image="whiteForest" category="cookie"/>
-              <ProductItem name="Chocolate" price={650} image="chocolate" category="cookie"/>
-            </View>
-
-            <View style={styles.horizontal}>
-              <ProductItem name="Strawberry" price={550} image="strawberry" category="cookie"/>
-              <ProductItem name="Vanilla" price={500} image="vanilla" category="cookie"/>
-            </View>
-
-            <View style={styles.horizontal}>
-              <ProductItem name="Mocha & Nougatine" price={650} image="mocha" category="cookie"/>
-              <ProductItem name="Blueberry" price={1000} image="blueberry" category="cookie"/>
-            </View>
-
-            <View style={styles.horizontal}>
-              <ProductItem name="Blueberry Cheese" price={1500} image="blueberryCheese" category="cookie"/>
-              <ProductItem name="Chocolate Truffle" price={800} image="chocolateTruffle" category="cookie"/>
-            </View>
-
-            <View style={styles.horizontal}>
-              <ProductItem name="Sugarless" price={950} image="sugarLess" category="cookie"/>
-              <ProductItem name="Ice Cream" price={900} image="iceCream" category="cookie"/>
+              <ProductItem name="Cashew Nut" price={650} image="cashewNut" category="cookie"/>
+              <ProductItem name="Chocolate" price={650} image="chocoCookie" category="cookie"/>
             </View>
           </View>
         </ScrollView>

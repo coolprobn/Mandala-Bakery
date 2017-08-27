@@ -4,13 +4,13 @@ import {
 } from 'react-native';
 
 import {DrawerNavigator} from 'react-navigation';
-import Home from '../components/home/home';
 import {ProductStack} from "./productStack";
-import Login from "../components/login/login";
+import {LoginStack} from "./loginStack";
+import {HomeStack} from "./homeStack";
 
 export const Drawer = DrawerNavigator({
   Home: {
-    screen: Home,
+    screen: HomeStack,
   },
 
   Product: {
@@ -18,7 +18,7 @@ export const Drawer = DrawerNavigator({
   },
 
   Login: {
-    screen: Login,
+    screen: LoginStack,
   }
 
 });

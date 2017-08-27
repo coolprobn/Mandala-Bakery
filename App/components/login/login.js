@@ -26,7 +26,7 @@ export default class Login extends Component {
               </TouchableNativeFeedback>
           </View>
 
-          <TouchableNativeFeedback useForeground={true} >
+          <TouchableNativeFeedback useForeground={true} onPress={()=>this.props.navigation.navigate('Register')}>
             <View style={styles.registerContainer}>
               <View style={styles.notMember}>
                 <Text style={{textAlign: 'center'}}>Not a member yet?</Text>

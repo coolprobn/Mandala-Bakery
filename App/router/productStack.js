@@ -8,9 +8,10 @@ import {
   View
 } from 'react-native';
 import {StackNavigator} from 'react-navigation';
+import {NavigationActions} from 'react-navigation';
+
 import Products from "../components/product/products";
 import Cake from "../components/product/cake/cake";
-import Login from "../components/login/login";
 
 
 export const ProductStack = StackNavigator({
@@ -28,4 +29,12 @@ export const ProductStack = StackNavigator({
     },
   },
 
-});
+},
+  {
+
+
+  },
+);
+
+
+

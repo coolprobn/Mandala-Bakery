@@ -15,6 +15,8 @@ import Test from "./components/test";
 import Cake from "./components/product/cake/cake";
 import Cookie from "./components/product/cookie/cookie";
 import {Drawer} from "./router/Drawer";
+import Home from "./components/home/home";
+import {HomeStack} from "./router/homeStack";
 
 export default class App extends Component {
   render() {

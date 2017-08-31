@@ -3238,6 +3238,10 @@ react-native-side-menu@^1.0.2:
   dependencies:
     prop-types "^15.5.10"
 
+react-native-simple-radio-button@^2.6.1:
+  version "2.6.1"
+  resolved "https://registry.yarnpkg.com/react-native-simple-radio-button/-/react-native-simple-radio-button-2.6.1.tgz#6277812044ea87645ae52a8f8c3f7eb0d9385228"
+
 react-native-star-rating@^1.0.8:
   version "1.0.8"
   resolved "https://registry.yarnpkg.com/react-native-star-rating/-/react-native-star-rating-1.0.8.tgz#6e47d5335ddcc7920a5d92e6cc6478f8655a92a3"

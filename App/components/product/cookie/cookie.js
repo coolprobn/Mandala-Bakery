@@ -11,17 +11,17 @@ import ProductItem from '../productItem';
 export default class Cookie extends Component {
   render() {
     return (
-      <Image source={require("../../../images/cakeBg.jpg")} style={styles.cookie}>
+      <Image source={require("../../../images/cookieCoffeeBg.jpg")} style={styles.cookie}>
         <ScrollView>
           <View style={styles.vertical}>
             <View style={styles.horizontal} >
-              <ProductItem name="Cookie" price={550} image="cookie" category="cookie"/>
-              <ProductItem name="Peanut Butter" price={600} image="peanutButtterCookie" category="cookie"/>
+              <ProductItem name="Cookie" price={180} image="cookie" category="cookie" weight="per package(200 gm)"/>
+              <ProductItem name="Peanut Butter" price={180} image="peanutButterCookie" category="cookie" weight="per package(200 gm)"/>
             </View>
 
             <View style={styles.horizontal}>
-              <ProductItem name="Cashew Nut" price={650} image="cashewNut" category="cookie"/>
-              <ProductItem name="Chocolate" price={650} image="chocoCookie" category="cookie"/>
+              <ProductItem name="Cashew Nut" price={180} image="cashewNutCookie" category="cookie" weight="per package(200 gm)"/>
+              <ProductItem name="Chocolate" price={180} image="chocoCookie" category="cookie" weight="per package(200 gm)"/>
             </View>
           </View>
         </ScrollView>

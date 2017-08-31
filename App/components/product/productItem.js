@@ -62,7 +62,7 @@ export default class ProductItem extends Component {
             {this.props.name}
           </Text>
           <Text style={styles.productDescText}>
-            NRs. {this.props.price} per pound
+            NRs. {this.props.price} {this.props.weight}
           </Text>
         </View>
 
@@ -85,6 +85,7 @@ const styles= StyleSheet.create({
     width: '100%',
     height: 200,
     resizeMode: 'stretch',
+    backgroundColor: 'rgba(255,255,255,0.9)',
   },
 
   productDesc: {

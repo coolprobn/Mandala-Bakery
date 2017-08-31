@@ -24,6 +24,7 @@ const styles= StyleSheet.create({
     margin: 5,
     height: 50,
     backgroundColor: 'rgba(255,255,255,0.7)',
+    justifyContent: 'center',
 
   },
   productText: {

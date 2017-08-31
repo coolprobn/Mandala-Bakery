@@ -8,7 +8,7 @@ import {HomeStack} from "./router/homeStack";
 export default class App extends Component {
   render() {
     return (
-        <Drawer/>
+        <Test/>
     );
   }
 }

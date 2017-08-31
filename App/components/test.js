@@ -1,66 +1,63 @@
+import React, { Component } from 'react';
 import {
   AppRegistry,
   StyleSheet,
   Text,
-  View,
-  TextInput,
-   TouchableOpacity, Image,KeyboardAvoidingView,ScrollView
-} from 'react-native';
-import React, { Component } from 'react';
-import { CheckBox } from 'react-native-elements'
+  View,Alert,TouchableWithoutFeedback,Image,Picker
 
-export default class Test extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      checked: true
-    };
-  }
+} from 'react-native';
+import RadioForm, {RadioButton, RadioButtonInput, RadioButtonLabel} from 'react-native-simple-radio-button';
+var radio_props = [
+  {label: 'HAIRCUT', value: 0 },
+  {label: 'HAIRCOLOR', value: 1 },
+  {label: 'SHAVING', value: 3 },
+  {label: 'HIGHLIGHT', value: 4 },
+  {label: 'MAKE-UP', value: 5 },
+  {label: 'FACIAL', value: 6 },
+  {label: 'HAIR-STRAIGHT', value: 7 },
+  {label: 'DREADLOCK', value: 8 },
+  {label: 'CLEASING', value: 9 },
+  {label: 'MANICURE', value: 6 },
+  {label: 'PADICURE', value: 7 },
+  {label: 'HAIR-CURLING', value: 8 },
+  {label: 'HAIRTREATMENT', value: 9 },{label: 'NAIL-POLISHING', value: 9 },
+  {label: 'HAIRTREATMENT', value: 9 },
+  {label: 'EYEBROW & LASH TINT', value: 9 },
+  {label: 'WAXING', value: 9 },
+
+];
+export default class Services extends Component {
+
 
   render() {
-
-    let checkBox = this.state.checked;
-
     return (
-      <CheckBox
-        title='Click Here'
-        checked={checkBox}
-      />
+
+      <View style={styles.container}>
+        <View style={styles.Service}>
+          <Text style={{textAlign: 'center'}}>SELECT SERVICE</Text>
+        </View>
+        <View style={styles.rdob}>
+          <RadioForm style={{justifyContent: 'flex-start'}}
+                     radio_props={radio_props}
+                     initial={2}
+                     formHorizontal={false}
+                     labelHorizontal={true}
+                     onPress={(value) => {
+                       this.setState({value: value})
+                     }}
+          />
+        </View>
+
+      </View>
+
     );
   }
 }
-
 const styles = StyleSheet.create({
-  registerContainer: {
-    flex:1,
-    backgroundColor: '#29B6F6',
-    padding:10,
-    justifyContent:'center'
-  },
+  container: { justifyContent: 'flex-start',
 
-  text: {
-    paddingTop:17,
-    padding:15
   },
+  rdob:{
 
-  textInput: {
-    height: 50,
-    marginBottom: 20,
-    backgroundColor: 'white',
-    borderColor:"#607D8B" ,
-    borderWidth: 1,
-    marginTop:4,
-    alignSelf:'stretch'
   },
-
-  register: {
-    maxHeight:50,
-    marginHorizontal:90,
-    paddingTop:10,
-    height:60,
-    width:120,
-    backgroundColor: '#009688',
-    marginTop:20
-  },
-
-})
+});

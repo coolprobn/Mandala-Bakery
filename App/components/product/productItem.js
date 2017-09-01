@@ -25,10 +25,50 @@ export default class ProductItem extends Component {
     });
   }
 
+  subCategory(){
+    if(this.props.subCategory!=subCat){
+      return(
+        this.props.subCategory
+      );
+    }
+    var subCat = this.props.subCategory;
+
+  }
+
   image(){
     if(this.props.category!="coffee"){
       return(
-        <Image source={ImageMap[this.props.image]} style={styles.productImage}/>)
+        <View>
+          <Image source={ImageMap[this.props.image]} style={styles.productImage}/>
+          <View style={styles.productDesc} >
+            <Text style={styles.productDescText}>
+              {this.props.name}
+            </Text>
+            <Text style={styles.productDescText}>
+              NRs. {this.props.price} {this.props.weight}
+            </Text>
+          </View>
+        </View>);
+    }
+    else{
+      return(
+        <View style={styles.coffee}>
+          <Text style={styles.coffeeDescMainText}>
+            {this.subCategory()}
+          </Text>
+          <View style={styles.coffeeDesc}>
+
+            <Text style={styles.coffeeDescText}>
+              {this.props.name}
+            </Text>
+
+            <Text style={styles.coffeeDescText}>
+              {this.props.price}
+            </Text>
+
+          </View>
+        </View>
+      );
     }
   }
 
@@ -57,21 +97,11 @@ export default class ProductItem extends Component {
       <View style={styles.productItem} >
         {this.image()}
 
-        <View style={styles.productDesc} >
-          <Text style={styles.productDescText}>
-            {this.props.name}
-          </Text>
-          <Text style={styles.productDescText}>
-            NRs. {this.props.price} {this.props.weight}
-          </Text>
-        </View>
-
         {this.addToCart()}
-
-
 
       </View>
     );
+
   }
 }
 
@@ -102,7 +132,28 @@ const styles= StyleSheet.create({
   },
 
   productDescText:{
-    //fontSize: 15,
     textAlign: 'center',
+  },
+
+  coffeeDescMainText: {
+    textAlign: 'center',
+    fontSize: 20,
+
+  },
+
+  coffeeDescText: {
+    fontSize: 15,
+
+  },
+
+  coffee: {
+    flex: 1,
+    backgroundColor: 'rgba(255,255,255,0.7)',
+  },
+
+  coffeeDesc: {
+    flex: 1,
+    flexDirection: 'row',
+    justifyContent: 'space-between',
   }
 });

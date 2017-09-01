@@ -15,28 +15,23 @@ export default class Pastry extends Component {
         <ScrollView>
           <View style={styles.vertical}>
             <View style={styles.horizontal} >
-              <ProductItem name="White Bread" price={45} image="whiteBread" category="bread" weight="per loaf"/>
-              <ProductItem name="Brown Bread" price={55} image="brownBread" category="bread" weight="per loaf"/>
+              <ProductItem name="Pineapple" price={100} image="pineapplePastry" category="pastry" weight="per piece"/>
+              <ProductItem name="Black Forest" price={120} image="blackForestPastry" category="pastry" weight="per piece"/>
             </View>
 
             <View style={styles.horizontal}>
-              <ProductItem name="Multigrain" price={60} image="multiGrainBread" category="cookie" weight="per loaf"/>
-              <ProductItem name="Millet" price={55} image="milletBread" category="bread" weight="per loaf"/>
+              <ProductItem name="White Forest" price={120} image="whiteForestPastry" category="pastry" weight="per piece"/>
+              <ProductItem name="Chocolate" price={110} image="chocolatePastry" category="pastry" weight="per piece"/>
             </View>
 
             <View style={styles.horizontal}>
-              <ProductItem name="Whole Wheat" price={60} image="wholeWheatBread" category="bread" weight="per loaf"/>
-              <ProductItem name="Oat Meal" price={95} image="oatMealBread" category="bread" weight="per loaf"/>
+              <ProductItem name="Vanilla" price={100} image="vanillaPastry" category="pastry" weight="per piece"/>
+              <ProductItem name="Strawberry" price={100} image="strawberryPastry" category="pastry" weight="per piece"/>
             </View>
 
             <View style={styles.horizontal}>
-              <ProductItem name="French" price={40} image="frenchBread" category="bread" weight="per loaf"/>
-              <ProductItem name="Farmer's Loaf" price={50} image="farmersLoaf" category="bread" weight="per loaf"/>
-            </View>
-
-            <View style={styles.horizontal}>
-              <ProductItem name="Croissant Plain" price={40} image="croissantPlainBread" category="bread" weight="per loaf"/>
-              <ProductItem name="Croissant Chocolate" price={45} image="croissantChocoBread" category="bread" weight="per loaf"/>
+              <ProductItem name="Mocha" price={115} image="mochaPastry" category="pastry" weight="per piece"/>
+              <ProductItem name="Mango" price={110} image="mangoPastry" category="pastry" weight="per piece"/>
             </View>
           </View>
         </ScrollView>

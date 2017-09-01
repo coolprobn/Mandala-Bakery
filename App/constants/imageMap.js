@@ -30,6 +30,15 @@ const ImageMap = {
   'farmersLoaf': require('../images/farmersLoaf.jpg'),
   'croissantPlainBread': require('../images/croissantPlainBread.jpg'),
   'croissantChocoBread': require('../images/croissantChocolateBread.jpg'),
+  'pineapplePastry': require('../images/pineapplePastry.jpg'),
+  'blackForestPastry': require('../images/blackForestPastry.png'),
+  'whiteForestPastry': require('../images/whiteForestPastry.jpg'),
+  'chocolatePastry': require('../images/chocoPastry.jpg'),
+  'vanillaPastry': require('../images/vanilaPastry.jpg'),
+  'strawberryPastry': require('../images/strawberryPastry.png'),
+  'mochaPastry': require('../images/mochaPastry.jpg'),
+  'mangoPastry': require('../images/mangoPastry.jpg'),
+
 };
 
 export default ImageMap;

@@ -15,6 +15,7 @@ import Cake from "../components/product/cake/cake";
 import Cookie from "../components/product/cookie/cookie";
 import Bread from "../components/product/bread/bread";
 import Pastry from "../components/product/pastry/pastry";
+import Coffee from "../components/product/coffee/coffee";
 
 
 export const ProductStack = StackNavigator({
@@ -50,6 +51,13 @@ export const ProductStack = StackNavigator({
     screen: Pastry,
     navigationOptions: {
       title: 'Pastry',
+    }
+  },
+
+  Coffee: {
+    screen: Coffee,
+    navigationOptions: {
+      title: 'Coffee',
     }
   }
 

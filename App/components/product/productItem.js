@@ -8,6 +8,7 @@ import {
   View,Image,TouchableNativeFeedback, AsyncStorage,
 } from 'react-native';
 import StarRating from 'react-native-star-rating';
+import ratingService from '../../services/RatingService';
 
 import ImageMap from '../../constants/imageMap'
 export default class ProductItem extends Component {
@@ -23,6 +24,11 @@ export default class ProductItem extends Component {
     };
     this.addInCart = this.addInCart.bind(this);
     this.onStarRatingPress = this.onStarRatingPress.bind(this);
+  }
+
+  componentWillMount() {
+    var self =this
+
   }
 
   onStarRatingPress(rating) {
@@ -79,13 +85,21 @@ export default class ProductItem extends Component {
   }
 
   addToCart(){
+    let {id, cakes} = this.props;
+    let cake = cakes.find((cake)=>{
+      return cake.id == id;
+    });
+    let starCount = 0;
+    if(cake){
+      starCount = cake.ratings
+    }
     if(this.props.category=="cake") {
       return(
         <View>
           <StarRating
             disabled={false}
             maxStars={5}
-            rating={this.state.starCount}
+            rating={starCount}
             selectedStar={(rating) => this.onStarRatingPress(rating)} starColor={'gold'} starSize={30}/>
           <TouchableNativeFeedback useForeground={true} onPress={this.addInCart}>
             <View style={styles.addToCart}>

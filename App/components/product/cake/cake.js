@@ -1,48 +1,66 @@
-
-
-import React, { Component } from 'react';
+import React, {Component} from 'react';
 import {
   AppRegistry,
   StyleSheet,
   Text,
-  View,ScrollView,Image
+  View, ScrollView, Image
 } from 'react-native';
 import ProductItem from "../productItem";
+import itemService from '../../../services/ItemService';
 
 export default class Cake extends Component {
+  constructor() {
+    super();
+    this.state = {
+      cakes: []
+    }
+  }
+
+
+  async componentWillMount() {
+    let cakes = await itemService.allCakes();
+    console.log(cakes)
+    this.setState({cakes});
+  }
+
   render() {
+    let {cakes} = this.state;
     return (
       <Image source={require("../../../images/cakeBg.jpg")} style={styles.cake}>
         <ScrollView>
           <View style={styles.vertical}>
-            <View style={styles.horizontal} >
-              <ProductItem name="Pineapple" price={550} image="pineapple" category="cake" weight="per pound"/>
-              <ProductItem name="Black Forest" price={600} image="blackForest" category="cake" weight="per pound"/>
+            <View style={styles.horizontal}>
+              <ProductItem name="Pineapple" price={550} image="pineapple" category="cake" weight="per pound" id={1} cakes={cakes}/>
+              <ProductItem name="Black Forest" price={600} image="blackForest" category="cake" weight="per pound"
+                           id={2} cakes={cakes}/>
             </View>
 
             <View style={styles.horizontal}>
-              <ProductItem name="White Forest" price={650} image="whiteForest" category="cake" weight="per pound"/>
-              <ProductItem name="Chocolate" price={650} image="chocolate" category="cake" weight="per pound"/>
+              <ProductItem name="White Forest" price={650} image="whiteForest" category="cake" weight="per pound"
+                           id={3} cakes={cakes}/>
+              <ProductItem name="Chocolate" price={650} image="chocolate" category="cake" weight="per pound" id={4} cakes={cakes}/>
             </View>
 
             <View style={styles.horizontal}>
-              <ProductItem name="Strawberry" price={550} image="strawberry" category="cake" weight="per pound"/>
-              <ProductItem name="Vanilla" price={500} image="vanilla" category="cake" weight="per pound"/>
+              <ProductItem name="Strawberry" price={550} image="strawberry" category="cake" weight="per pound" id={5} cakes={cakes}/>
+              <ProductItem name="Vanilla" price={500} image="vanilla" category="cake" weight="per pound" id={6} cakes={cakes}/>
             </View>
 
             <View style={styles.horizontal}>
-              <ProductItem name="Mocha & Nougatine" price={650} image="mocha" category="cake"/>
-              <ProductItem name="Blueberry" price={1000} image="blueberry" category="cake"/>
+              <ProductItem name="Mocha & Nougatine" price={650} image="mocha" category="cake" id={7} cakes={cakes}/>
+              <ProductItem name="Blueberry" price={1000} image="blueberry" category="cake" id={8} cakes={cakes}/>
             </View>
 
             <View style={styles.horizontal}>
-              <ProductItem name="Blueberry Cheese" price={1500} image="blueberryCheese" category="cake" weight="per pound"/>
-              <ProductItem name="Chocolate Truffle" price={800} image="chocolateTruffle" category="cake" weight="per pound"/>
+              <ProductItem name="Blueberry Cheese" price={1500} image="blueberryCheese" category="cake"
+                           weight="per pound" id={9} cakes={cakes}/>
+              <ProductItem name="Chocolate Truffle" price={800} image="chocolateTruffle" category="cake"
+                           weight="per pound" id={10} cakes={cakes}/>
             </View>
 
             <View style={styles.horizontal}>
-              <ProductItem name="Sugarless" price={950} image="sugarLess" category="cake" weight="per pound"/>
-              <ProductItem name="Ice Cream" price={900} image="iceCream" category="cake" weight="per pound"/>
+              <ProductItem name="Sugarless" price={950} image="sugarLess" category="cake" weight="per pound" id={11} cakes={cakes}/>
+              <ProductItem name="Ice Cream" price={900} image="iceCream" category="cake" weight="per pound" id={12} cakes={cakes}/>
             </View>
           </View>
         </ScrollView>
@@ -51,7 +69,7 @@ export default class Cake extends Component {
   }
 }
 
-const styles= StyleSheet.create({
+const styles = StyleSheet.create({
   horizontal: {
     flex: 1,
     flexDirection: 'row',

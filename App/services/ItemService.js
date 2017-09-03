@@ -15,7 +15,7 @@ class ItemService{
   }
 
   allCakes(){
-    this.getCakes().then((response)=>{
+    return this.getCakes().then((response)=>{
       return response.data
     }).catch((e)=>{
       console.log(e)

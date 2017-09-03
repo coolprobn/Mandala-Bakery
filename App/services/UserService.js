@@ -1,15 +1,15 @@
-import axios from  'axios'
-import {API_URL} from '../config'
+import axios from  'axios';
+import CONFIG from '../config/config';
 
 class UserService{
 
   signUp(data){
-    let url = API_URL + 'auth';
+    let url = CONFIG.API_URL + 'auth';
     return axios.post(url)
   }
 
   login(data){
-    let url = API_URL + 'auth/sign_in';
+    let url = CONFIG.API_URL + 'auth/sign_in';
     return axios.post(url)
   }
 }

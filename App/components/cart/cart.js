@@ -13,8 +13,8 @@ export default class Cart extends Component {
     super();
     this.state = {
       name: '',
-      price: '',
-      quantity: '',
+      price: 20,
+      quantity: 20,
     }
   }
 
@@ -35,7 +35,7 @@ export default class Cart extends Component {
   calculate(){
     let price = this.state.price;
     let quantity = this.state.quantity;
-    let amount = price*quantity;
+    let amount = 20*20;
     return(
       amount
     );
@@ -60,15 +60,15 @@ export default class Cart extends Component {
             </Text>
           </View>
 
-          <View>
+          <View style={styles.productDescription}>
             <Text>
-              {this.state.name}
+              cake
             </Text>
             <Text>
-              {this.state.quantity}
+              {this.setState=20}
             </Text>
             <Text>
-              {this.state.price}
+              {this.setState=20}
             </Text>
             <Text>
               {this.calculate()}
@@ -88,19 +88,18 @@ const styles= StyleSheet.create({
   },
 
   cart: {
+    flex:1,
 
   },
 
   description:{
-    //flex: 1,
     flexDirection: 'row',
-    margin: 5,
+    marginHorizontal: 5,
     justifyContent: 'space-around',
     backgroundColor: 'rgba(255,255,255,0.7)',
   },
 
   productDescription:{
-    //flex: 1,
     flexDirection: 'row',
     margin: 5,
     justifyContent: 'space-around',

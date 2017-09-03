@@ -38,7 +38,7 @@ export default class Register extends Component {
     userService.signUp(userData).then((result) => {
       AsyncStorage.multiSet([
         ["firstName", this.state.firstName],
-        ["lastName", this.state.secondName],
+        ["lastName", this.state.lastName],
         ["mobileNumber", this.state.mobileNumber],
         ["password", this.state.password],
 

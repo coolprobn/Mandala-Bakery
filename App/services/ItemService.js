@@ -1,6 +1,6 @@
 import axios from  'axios'
+import {API_URL} from '../config'
 
-const API_URL = "http://192.168.2.52:3000/";
 class ItemService{
 
   getItems(){

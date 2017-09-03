@@ -17,7 +17,7 @@ export default class Register extends Component {
     this.signUp = this.signUp.bind(this)
     this.state = {
       firstName: '',
-      secondName: '',
+      lastName: '',
       mobileNumber: '',
       password: '',
       confirmPassword:''
@@ -33,21 +33,24 @@ export default class Register extends Component {
     console.log(signup_url)
     axios.post(signup_url, {
       first_Name: this.state.firstName,
-      second_Name: this.state.secondName,
+      last_Name: this.state.secondName,
       mobile_Number: this.state.mobileNumber,
-      password: this.state.firstName,
+      password: this.state.password,
     }).then((result)=>{
       console.log(result)
     //  store value in android
       AsyncStorage.multiSet([
         ["firstName", this.state.firstName],
-        ["secondName", this.state.secondName],
+        ["lastName", this.state.secondName],
         ["mobileNumber", this.state.mobileNumber],
         ["password", this.state.password],
 
       ])
 
     })
+      .catch(function (error) {
+        console.log(error);
+      });
   }
 
   render() {
@@ -57,7 +60,7 @@ export default class Register extends Component {
         <View style={styles.text}>
 
           <TextInput underlineColorAndroid={'rgba(0,0,0,0)'} style={styles.textInput} placeholder="First Name" onChangeText={(firstName) => this.setState({firstName})}/>
-          <TextInput underlineColorAndroid={'rgba(0,0,0,0)'} style={styles.textInput} placeholder="Last Name" onChangeText={(secondName) => this.setState({secondName})}/>
+          <TextInput underlineColorAndroid={'rgba(0,0,0,0)'} style={styles.textInput} placeholder="Last Name" onChangeText={(secondName) => this.setState({lastName})}/>
           <TextInput underlineColorAndroid={'rgba(0,0,0,0)'} style={styles.textInput} placeholder="Mobile Number" onChangeText={(mobileNumber) => this.setState({mobileNumber})}/>
           <TextInput underlineColorAndroid={'rgba(0,0,0,0)'} style={styles.textInput} placeholder="Password" secureTextEntry={true} onChangeText={(password) => this.setState({password})}/>
           <TextInput underlineColorAndroid={'rgba(0,0,0,0)'} style={styles.textInput} placeholder="Confirm Password" secureTextEntry={true} onChangeText={(confirmPassword) => this.setState({confirmPassword})}/>

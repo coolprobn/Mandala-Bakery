@@ -7,8 +7,39 @@ import {
   TextInput,
   Button, TouchableNativeFeedback, TouchableOpacity, Image
 } from 'react-native';
+import axios from 'axios'
+const API_URL = "http://192.168.2.52:3000/";
 
 export default class Login extends Component {
+  constructor(){
+    super();
+    this.signUp = this.signUp.bind(this)
+    this.state = {
+      mobileNumber: '',
+      password: '',
+    }
+  }
+
+  login(){
+    let signup_url = API_URL+ 'auth/sign_up'
+    console.log(signup_url)
+    axios.post(signup_url, {
+      user_Name: this.state.userName,
+      password: this.state.password,
+    }).then((result)=>{
+      console.log(result)
+      //  store value in android
+      AsyncStorage.multiSet([
+        ["mobileNumber", this.state.mobileNumber],
+        ["password", this.state.password],
+
+      ])
+
+    })
+      .catch(function (error) {
+        console.log(error);
+      });
+  }
   render() {
     return (
       <Image source={require('../../images/coffeeBg1.jpg')} style={styles.login}>
@@ -16,12 +47,13 @@ export default class Login extends Component {
 
           <View style={styles.text}>
 
-              <TextInput style={styles.textInput} placeholder="Username or E-mail" underlineColorAndroid={'rgba(0,0,0,0)'} />
-              <TextInput style={styles.textInput} placeholder="Password" secureTextEntry={true} underlineColorAndroid={'rgba(0,0,0,0)'}/>
+              <TextInput style={styles.textInput} placeholder="Mobile Number" underlineColorAndroid={'rgba(0,0,0,0)'} onChangeText={(mobileNumber) => this.setState({mobileNumber})} keyboardType="phone-pad"/>
+              <TextInput style={styles.textInput} placeholder="Password" secureTextEntry={true} underlineColorAndroid={'rgba(0,0,0,0)'} onChangeText={(password) => this.setState({password})}/>
+              <TextInput style={styles.textInput} placeholder={this.state.password} underlineColorAndroid={'rgba(0,0,0,0)'} />
 
               <TouchableNativeFeedback useForeground={true}>
                 <View style = {styles.signIn}>
-                  <Text style={{textAlign: 'center', paddingVertical: 5, fontSize: 15}}>Sign in</Text>
+                  <Text style={{textAlign: 'center', paddingVertical: 5, fontSize: 15}} onPress={this.login}>Sign in</Text>
                 </View>
               </TouchableNativeFeedback>
           </View>
@@ -58,7 +90,7 @@ const styles = StyleSheet.create({
   textInput: {
     height: 50,
     marginBottom: 10,
-    backgroundColor: 'rgba(255,255,255,0.5)',
+    backgroundColor: 'rgba(255,255,255,0.7)',
   },
 
   signIn: {
@@ -75,11 +107,10 @@ const styles = StyleSheet.create({
   notMember: {
     backgroundColor: 'rgba(255,255,255,0.8)',
     justifyContent: 'center',
-    height: 30,
   },
 
   register: {
-    height: 40,
+    //height: 40,
     backgroundColor: 'rgba(255,255,255,0.8)',
     justifyContent: 'center',
   },

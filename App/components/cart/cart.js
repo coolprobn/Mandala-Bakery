@@ -10,7 +10,9 @@ import {
 export default class Cart extends Component {
   render() {
     return (
-      <Cake/>
+      <View>
+
+      </View>
     );
   }
 }

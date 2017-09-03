@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, {Component} from 'react';
 import {
   AppRegistry,
   StyleSheet,
@@ -7,12 +7,11 @@ import {
   TextInput,
   Button, TouchableOpacity, Image, AsyncStorage
 } from 'react-native';
-import axios from 'axios'
-const API_URL = "http://192.168.2.52:3000/";
+import userService from '../../services/UserService';
 
 export default class Register extends Component {
 
-  constructor(){
+  constructor() {
     super();
     this.signUp = this.signUp.bind(this)
     this.state = {
@@ -20,25 +19,23 @@ export default class Register extends Component {
       lastName: '',
       mobileNumber: '',
       password: '',
-      confirmPassword:''
+      confirmPassword: ''
     }
   }
 
-  setValue(){
+  setValue() {
 
   }
 
-  signUp(){
-    let signup_url = API_URL+ 'auth/sign_up'
-    console.log(signup_url)
-    axios.post(signup_url, {
+  signUp() {
+    let userData = {
       first_Name: this.state.firstName,
       last_Name: this.state.secondName,
       mobile_Number: this.state.mobileNumber,
       password: this.state.password,
-    }).then((result)=>{
-      console.log(result)
-    //  store value in android
+    };
+
+    userService.signUp(userData).then((result) => {
       AsyncStorage.multiSet([
         ["firstName", this.state.firstName],
         ["lastName", this.state.secondName],
@@ -48,30 +45,44 @@ export default class Register extends Component {
       ])
 
     })
-      .catch(function (error) {
-        console.log(error);
-      });
+    .catch(function (error) {
+      console.log(error);
+    });
   }
 
   render() {
     return (
-      <Image source={require('../../images/coffeeBean1.jpg')} style={styles.registerContainer}>
+    <Image source={require('../../images/coffeeBean1.jpg')}
+           style={styles.registerContainer}>
 
-        <View style={styles.text}>
+      <View style={styles.text}>
 
-          <TextInput underlineColorAndroid={'rgba(0,0,0,0)'} style={styles.textInput} placeholder="First Name" onChangeText={(firstName) => this.setState({firstName})}/>
-          <TextInput underlineColorAndroid={'rgba(0,0,0,0)'} style={styles.textInput} placeholder="Last Name" onChangeText={(secondName) => this.setState({lastName})}/>
-          <TextInput underlineColorAndroid={'rgba(0,0,0,0)'} style={styles.textInput} placeholder="Mobile Number" onChangeText={(mobileNumber) => this.setState({mobileNumber})}/>
-          <TextInput underlineColorAndroid={'rgba(0,0,0,0)'} style={styles.textInput} placeholder="Password" secureTextEntry={true} onChangeText={(password) => this.setState({password})}/>
-          <TextInput underlineColorAndroid={'rgba(0,0,0,0)'} style={styles.textInput} placeholder="Confirm Password" secureTextEntry={true} onChangeText={(confirmPassword) => this.setState({confirmPassword})}/>
+        <TextInput underlineColorAndroid={'rgba(0,0,0,0)'}
+                   style={styles.textInput} placeholder="First Name"
+                   onChangeText={(firstName) => this.setState({firstName})}/>
+        <TextInput underlineColorAndroid={'rgba(0,0,0,0)'}
+                   style={styles.textInput} placeholder="Last Name"
+                   onChangeText={(secondName) => this.setState({lastName})}/>
+        <TextInput underlineColorAndroid={'rgba(0,0,0,0)'}
+                   style={styles.textInput} placeholder="Mobile Number"
+                   onChangeText={(mobileNumber) => this.setState({mobileNumber})}/>
+        <TextInput underlineColorAndroid={'rgba(0,0,0,0)'}
+                   style={styles.textInput} placeholder="Password"
+                   secureTextEntry={true}
+                   onChangeText={(password) => this.setState({password})}/>
+        <TextInput underlineColorAndroid={'rgba(0,0,0,0)'}
+                   style={styles.textInput} placeholder="Confirm Password"
+                   secureTextEntry={true}
+                   onChangeText={(confirmPassword) => this.setState({confirmPassword})}/>
 
-          <TouchableOpacity  style={styles.register}>
-            <Text style={{textAlign: 'center', paddingVertical: 5, fontSize: 15}} onPress={this.signUp}>Register</Text>
-          </TouchableOpacity>
+        <TouchableOpacity style={styles.register}>
+          <Text style={{textAlign: 'center', paddingVertical: 5, fontSize: 15}}
+                onPress={this.signUp}>Register</Text>
+        </TouchableOpacity>
 
-        </View>
+      </View>
 
-      </Image>
+    </Image>
     );
   }
 }
@@ -86,7 +97,7 @@ const styles = StyleSheet.create({
   text: {
     flex: 1,
     justifyContent: 'center',
-    padding:20,
+    padding: 20,
   },
 
   textInput: {
@@ -100,5 +111,4 @@ const styles = StyleSheet.create({
     backgroundColor: 'rgba(255,255,255,0.8)',
     justifyContent: 'center'
   },
-
 });

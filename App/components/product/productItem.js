@@ -81,7 +81,7 @@ export default class ProductItem extends Component {
             maxStars={5}
             rating={this.state.starCount}
             selectedStar={(rating) => this.onStarRatingPress(rating)} starColor={'gold'} starSize={30}/>
-          <TouchableNativeFeedback useForeground={true} onPress={}>
+          <TouchableNativeFeedback useForeground={true} onPress={this.addInCart}>
             <View style={styles.addToCart}>
               <Text style={{textAlign: 'center'}}>
                 Add To Cart

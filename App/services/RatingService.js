@@ -5,16 +5,16 @@ class RatingService{
   /**
    *
    */
-  rateItem(ratings, itemId){
+  rateItem(rating, itemId){
     //todo get userid from localstorage
     let ratingData = {
       user_id: 1,
       item_id: itemId,
-      ratings: ratings
+      value: rating
     };
 
     let url = CONFIG.API_URL + 'ratings.json';
-    return axios.post(url)
+    return axios.post(url, ratingData)
   }
 }
 

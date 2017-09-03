@@ -32,6 +32,7 @@ export default class ProductItem extends Component {
   }
 
   onStarRatingPress(rating) {
+    this.props.changeRating(this.props.id, rating);
     this.setState({
       starCount: rating,
     });

@@ -7,20 +7,35 @@ import {
 } from 'react-native';
 import ProductItem from "../productItem";
 import itemService from '../../../services/ItemService';
+import ratingService from '../../../services/RatingService';
 
 export default class Cake extends Component {
   constructor() {
     super();
     this.state = {
       cakes: []
-    }
+    };
+
+    this.changeRating = this.changeRating.bind(this);
+  }
+
+  changeRating(itemId, rating){
+    ratingService.rateItem(rating, itemId).then((response)=>{
+      this.fetchAndSetCakes();
+    }).catch(()=>{
+
+    })
+
+  }
+
+  async fetchAndSetCakes(){
+    let cakes = await itemService.allCakes();
+    this.setState({cakes});
   }
 
 
-  async componentWillMount() {
-    let cakes = await itemService.allCakes();
-    console.log(cakes)
-    this.setState({cakes});
+  componentWillMount() {
+   this.fetchAndSetCakes()
   }
 
   render() {
@@ -30,37 +45,37 @@ export default class Cake extends Component {
         <ScrollView>
           <View style={styles.vertical}>
             <View style={styles.horizontal}>
-              <ProductItem name="Pineapple" price={550} image="pineapple" category="cake" weight="per pound" id={1} cakes={cakes}/>
+              <ProductItem name="Pineapple" price={550} image="pineapple" category="cake" weight="per pound" id={1} cakes={cakes} changeRating={this.changeRating}/>
               <ProductItem name="Black Forest" price={600} image="blackForest" category="cake" weight="per pound"
-                           id={2} cakes={cakes}/>
+                           id={2} cakes={cakes} changeRating={this.changeRating}/>
             </View>
 
             <View style={styles.horizontal}>
               <ProductItem name="White Forest" price={650} image="whiteForest" category="cake" weight="per pound"
-                           id={3} cakes={cakes}/>
-              <ProductItem name="Chocolate" price={650} image="chocolate" category="cake" weight="per pound" id={4} cakes={cakes}/>
+                           id={3} cakes={cakes} changeRating={this.changeRating}/>
+              <ProductItem name="Chocolate" price={650} image="chocolate" category="cake" weight="per pound" id={4} cakes={cakes} changeRating={this.changeRating}/>
             </View>
 
             <View style={styles.horizontal}>
-              <ProductItem name="Strawberry" price={550} image="strawberry" category="cake" weight="per pound" id={5} cakes={cakes}/>
-              <ProductItem name="Vanilla" price={500} image="vanilla" category="cake" weight="per pound" id={6} cakes={cakes}/>
+              <ProductItem name="Strawberry" price={550} image="strawberry" category="cake" weight="per pound" id={5} cakes={cakes} changeRating={this.changeRating}/>
+              <ProductItem name="Vanilla" price={500} image="vanilla" category="cake" weight="per pound" id={6} cakes={cakes} changeRating={this.changeRating}/>
             </View>
 
             <View style={styles.horizontal}>
-              <ProductItem name="Mocha & Nougatine" price={650} image="mocha" category="cake" id={7} cakes={cakes}/>
-              <ProductItem name="Blueberry" price={1000} image="blueberry" category="cake" id={8} cakes={cakes}/>
+              <ProductItem name="Mocha & Nougatine" price={650} image="mocha" category="cake" id={7} cakes={cakes} changeRating={this.changeRating}/>
+              <ProductItem name="Blueberry" price={1000} image="blueberry" category="cake" id={8} cakes={cakes} changeRating={this.changeRating}/>
             </View>
 
             <View style={styles.horizontal}>
               <ProductItem name="Blueberry Cheese" price={1500} image="blueberryCheese" category="cake"
-                           weight="per pound" id={9} cakes={cakes}/>
+                           weight="per pound" id={9} cakes={cakes} changeRating={this.changeRating}/>
               <ProductItem name="Chocolate Truffle" price={800} image="chocolateTruffle" category="cake"
-                           weight="per pound" id={10} cakes={cakes}/>
+                           weight="per pound" id={10} cakes={cakes} changeRating={this.changeRating}/>
             </View>
 
             <View style={styles.horizontal}>
-              <ProductItem name="Sugarless" price={950} image="sugarLess" category="cake" weight="per pound" id={11} cakes={cakes}/>
-              <ProductItem name="Ice Cream" price={900} image="iceCream" category="cake" weight="per pound" id={12} cakes={cakes}/>
+              <ProductItem name="Sugarless" price={950} image="sugarLess" category="cake" weight="per pound" id={11} cakes={cakes} changeRating={this.changeRating}/>
+              <ProductItem name="Ice Cream" price={900} image="iceCream" category="cake" weight="per pound" id={12} cakes={cakes} changeRating={this.changeRating}/>
             </View>
           </View>
         </ScrollView>

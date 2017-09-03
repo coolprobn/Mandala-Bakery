@@ -108,7 +108,6 @@ const styles = StyleSheet.create({
   },
 
   register: {
-    //height: 40,
     backgroundColor: 'rgba(255,255,255,0.8)',
     justifyContent: 'center',
   },
@@ -116,8 +115,8 @@ const styles = StyleSheet.create({
   image: {
     height: 200,
     width: 200,
-    marginHorizontal: 80,
     borderRadius: 100,
+    justifyContent: 'space-around',
   }
 
 });

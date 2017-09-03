@@ -29,7 +29,7 @@ export default class Products extends Component {
   render() {
     return (
       <Image source={require('../../images/coffeeBg1.jpg')} style={styles.productItemLayout}>
-        <ProductList name={this.state.name} color="#7CB9E8" navigate={()=>this.props.navigation.navigate('Cake')}/>
+        <ProductList name="Cake" color="#7CB9E8" navigate={()=>this.props.navigation.navigate('Cake')}/>
         <ProductList name="Bread" color="#BF94E4" navigate={this.props.navigation.navigate}/>
         <ProductList name="Coffee" color="#BCD4E6" navigate={this.props.navigation.navigate}/>
         <ProductList name="Pastry" color="#FAEBD7" navigate={this.props.navigation.navigate}/>

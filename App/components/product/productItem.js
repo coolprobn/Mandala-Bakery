@@ -5,7 +5,7 @@ import {
   AppRegistry,
   StyleSheet,
   Text,
-  View,Image,TouchableNativeFeedback,
+  View,Image,TouchableNativeFeedback, AsyncStorage,
 } from 'react-native';
 import StarRating from 'react-native-star-rating';
 
@@ -15,8 +15,14 @@ export default class ProductItem extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      starCount: 3
+      starCount: 1,
+      name: this.props.name,
+      price: this.props.price,
+      quantity: 1,
+
     };
+    this.addInCart = this.addInCart.bind(this);
+    this.onStarRatingPress = this.onStarRatingPress.bind(this);
   }
 
   onStarRatingPress(rating) {
@@ -91,6 +97,20 @@ export default class ProductItem extends Component {
         </View>)
     }
   }
+
+  addInCart() {
+    AsyncStorage.multiSet([
+      ["name", this.state.name],
+      ["price", this.state.price],
+      ["quantity", this.state.quantity],
+
+    ]).then((response)=>{
+      console.log(response);
+    }).catch(()=>{
+      console.log("error");
+    });
+  }
+
   render() {
 
     return (

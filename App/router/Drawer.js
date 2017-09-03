@@ -7,6 +7,8 @@ import {DrawerNavigator} from 'react-navigation';
 import {ProductStack} from "./productStack";
 import {LoginStack} from "./loginStack";
 import {HomeStack} from "./homeStack";
+import Cart from "../components/cart/cart";
+import Cake from "../components/product/cake/cake";
 
 export const Drawer = DrawerNavigator({
   Home: {
@@ -19,6 +21,10 @@ export const Drawer = DrawerNavigator({
 
   Login: {
     screen: LoginStack,
+  },
+
+  Cart: {
+    screen: Cart,
   },
 
 });

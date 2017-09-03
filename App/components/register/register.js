@@ -20,7 +20,7 @@ export default class Register extends Component {
       lastName: '',
       mobileNumber: '',
       password: '',
-      confirmPassword:''
+      confirmPassword:'',
     }
   }
 
@@ -33,7 +33,7 @@ export default class Register extends Component {
     console.log(signup_url)
     axios.post(signup_url, {
       first_Name: this.state.firstName,
-      last_Name: this.state.secondName,
+      last_Name: this.state.lastName,
       mobile_Number: this.state.mobileNumber,
       password: this.state.password,
     }).then((result)=>{
@@ -41,7 +41,7 @@ export default class Register extends Component {
     //  store value in android
       AsyncStorage.multiSet([
         ["firstName", this.state.firstName],
-        ["lastName", this.state.secondName],
+        ["lastName", this.state.lastName],
         ["mobileNumber", this.state.mobileNumber],
         ["password", this.state.password],
 

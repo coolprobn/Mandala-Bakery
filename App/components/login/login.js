@@ -7,8 +7,7 @@ import {
   TextInput,
   Button, TouchableNativeFeedback, TouchableOpacity, Image
 } from 'react-native';
-import axios from 'axios'
-const API_URL = "http://192.168.2.52:3000/";
+import userService from '../../services/UserService';
 
 export default class Login extends Component {
   constructor(){
@@ -20,13 +19,12 @@ export default class Login extends Component {
     }
   }
 
-  login(){
-    let signup_url = API_URL+ 'auth/sign_up'
-    console.log(signup_url)
-    axios.post(signup_url, {
+  login() {
+    let loginData = {
       user_Name: this.state.userName,
       password: this.state.password,
-    }).then((result)=>{
+    };
+    userService.login(loginData).then((result) => {
       console.log(result)
       //  store value in android
       AsyncStorage.multiSet([
@@ -34,12 +32,12 @@ export default class Login extends Component {
         ["password", this.state.password],
 
       ])
-
     })
-      .catch(function (error) {
-        console.log(error);
-      });
+    .catch(function (error) {
+      console.log(error);
+    });
   }
+
   render() {
     return (
       <Image source={require('../../images/coffeeBg1.jpg')} style={styles.login}>

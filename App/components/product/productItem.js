@@ -81,7 +81,7 @@ export default class ProductItem extends Component {
             maxStars={5}
             rating={this.state.starCount}
             selectedStar={(rating) => this.onStarRatingPress(rating)} starColor={'gold'} starSize={30}/>
-          <TouchableNativeFeedback useForeground={true}>
+          <TouchableNativeFeedback useForeground={true} onPress={this.addInCart}>
             <View style={styles.addToCart}>
               <Text style={{textAlign: 'center'}}>
                 Add To Cart
@@ -148,12 +148,13 @@ const styles= StyleSheet.create({
 
   coffee: {
     flex: 1,
-    backgroundColor: 'rgba(255,255,255,0.7)',
+    //backgroundColor: 'rgba(255,255,255,0.7)',
   },
 
   coffeeDesc: {
     flex: 1,
     flexDirection: 'row',
     justifyContent: 'space-between',
+    padding: 5,
   }
 });

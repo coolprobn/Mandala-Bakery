@@ -3,7 +3,8 @@ import {
   AppRegistry,
   StyleSheet,
   Text,
-  View, Image, AsyncStorage
+  View, Image, AsyncStorage,
+  TouchableNativeFeedback
 } from 'react-native';
 
 export default class Cart extends Component {
@@ -12,11 +13,12 @@ export default class Cart extends Component {
     super();
     this.state = {
       cart: []
-    }
+    };
+    this.placeOrder = this.placeOrder.bind(this);
   }
 
   componentWillMount() {
-    var self = this
+    var self = this;
     AsyncStorage.getItem('cart').then((_cart) => {
       if (_cart) {
         self.setState({cart: JSON.parse(_cart)});
@@ -28,11 +30,19 @@ export default class Cart extends Component {
     return price * quantity;
   }
 
-  render() {
+  placeOrder() {
+    AsyncStorage.removeItem('cart');
+    this.setState({cart: []})
+  }
 
-    let lineItems = this.state.cart.map((item) => {
+  render() {
+    console.log(this.state.cart)
+    let totalPrice = 0;
+    let lineItems = this.state.cart.map((item, index) => {
+      let itemCost = this.calculateAmount(item.price, item.quantity);
+      totalPrice += itemCost;
       return (
-        <View style={styles.productDescription}>
+        <View style={styles.productDescription} key={`item${index}`}>
           <Text>
             {item.name}
           </Text>
@@ -43,11 +53,11 @@ export default class Cart extends Component {
             {item.price}
           </Text>
           <Text>
-            {this.calculateAmount(item.price, item.quantity)}
+            {itemCost}
           </Text>
         </View>
       )
-    })
+    });
 
     return (
       <Image source={require('../../images/cakeBg.jpg')} style={styles.cartImage}>
@@ -68,6 +78,39 @@ export default class Cart extends Component {
           </View>
 
           {lineItems}
+
+          <View style={styles.productDescription}>
+            <Text>
+              Total
+            </Text>
+            <Text>
+
+            </Text>
+            <Text>
+
+            </Text>
+            <Text>
+              {totalPrice}
+            </Text>
+          </View>
+
+          {this.state.cart.length > 0 ?
+            <TouchableNativeFeedback onPress={this.placeOrder}>
+              <View style={{
+                marginTop: 10,
+                backgroundColor: '#1bee2b',
+                justifyContent: 'center',
+              }}>
+                <Text style={{
+                  textAlign: 'center',
+                  padding: 15,
+                  fontSize: 16,
+
+                }}>
+                  Place Order
+                </Text>
+              </View>
+            </TouchableNativeFeedback> : null}
         </View>
       </Image>
     );

@@ -1,16 +1,16 @@
-
-
-import React, { Component } from 'react';
+import React, {Component} from 'react';
 import {
   AppRegistry,
   StyleSheet,
   Text,
-  View,Image,TouchableNativeFeedback, AsyncStorage,
+  Alert,
+  View, Image, TouchableNativeFeedback, AsyncStorage,
 } from 'react-native';
 import StarRating from 'react-native-star-rating';
 import ratingService from '../../services/RatingService';
 
 import ImageMap from '../../constants/imageMap'
+
 export default class ProductItem extends Component {
 
   constructor(props) {
@@ -27,7 +27,7 @@ export default class ProductItem extends Component {
   }
 
   componentWillMount() {
-    var self =this
+    var self = this
 
   }
 
@@ -38,9 +38,9 @@ export default class ProductItem extends Component {
     });
   }
 
-  subCategory(){
-    if(this.props.subCategory!=subCat){
-      return(
+  subCategory() {
+    if (this.props.subCategory != subCat) {
+      return (
         this.props.subCategory
       );
     }
@@ -48,12 +48,12 @@ export default class ProductItem extends Component {
 
   }
 
-  image(){
-    if(this.props.category!="coffee"){
-      return(
+  image() {
+    if (this.props.category != "coffee") {
+      return (
         <View>
           <Image source={ImageMap[this.props.image]} style={styles.productImage}/>
-          <View style={styles.productDesc} >
+          <View style={styles.productDesc}>
             <Text style={styles.productDescText}>
               {this.props.name}
             </Text>
@@ -63,8 +63,8 @@ export default class ProductItem extends Component {
           </View>
         </View>);
     }
-    else{
-      return(
+    else {
+      return (
         <View style={styles.coffee}>
           <Text style={styles.coffeeDescMainText}>
             {this.subCategory()}
@@ -85,17 +85,17 @@ export default class ProductItem extends Component {
     }
   }
 
-  addToCart(){
+  addToCartView() {
     let {id, cakes} = this.props;
-    let cake = cakes.find((cake)=>{
+    let cake = cakes.find((cake) => {
       return cake.id == id;
     });
     let starCount = 0;
-    if(cake){
+    if (cake) {
       starCount = cake.ratings
     }
-    if(this.props.category=="cake") {
-      return(
+    if (this.props.category == "cake") {
+      return (
         <View>
           <StarRating
             disabled={false}
@@ -114,25 +114,35 @@ export default class ProductItem extends Component {
   }
 
   addInCart() {
-    AsyncStorage.multiSet([
-      ["name", this.state.name],
-      ["price", this.state.price],
-      ["quantity", this.state.quantity],
+    let {id, name, price} = this.props;
+    //product, quantity, price, amount
+    let cart = [];
+    AsyncStorage.getItem('cart').then((_cart) => {
+      if (_cart) {
+        cart = JSON.parse(_cart)
+      }
 
-    ]).then((response)=>{
-      console.log(response);
-    }).catch(()=>{
-      console.log("error");
-    });
+      let line_item = cart.find(item => {
+        return item.id == id
+      });
+
+      if (line_item) {
+        line_item.quantity += 1
+      } else {
+        cart.push({id, name, price, quantity: 1})
+      }
+      Alert.alert('',`${name} has been added to cart`)
+      AsyncStorage.setItem('cart', JSON.stringify(cart))
+    })
   }
 
   render() {
 
     return (
-      <View style={styles.productItem} >
+      <View style={styles.productItem}>
         {this.image()}
 
-        {this.addToCart()}
+        {this.addToCartView()}
 
       </View>
     );
@@ -140,7 +150,7 @@ export default class ProductItem extends Component {
   }
 }
 
-const styles= StyleSheet.create({
+const styles = StyleSheet.create({
   productItem: {
     flex: 1,
     margin: 3,
@@ -154,7 +164,7 @@ const styles= StyleSheet.create({
   },
 
   productDesc: {
-    flex:1,
+    flex: 1,
     backgroundColor: 'rgba(255,255,255,0.7)',
     marginBottom: 5,
     justifyContent: 'center',
@@ -166,7 +176,7 @@ const styles= StyleSheet.create({
     justifyContent: 'center'
   },
 
-  productDescText:{
+  productDescText: {
     textAlign: 'center',
   },
 

@@ -1,47 +1,54 @@
-
-import React, { Component } from 'react';
+import React, {Component} from 'react';
 import {
   AppRegistry,
   StyleSheet,
   Text,
-  View,Image, AsyncStorage
+  View, Image, AsyncStorage
 } from 'react-native';
 
 export default class Cart extends Component {
 
-  constructor(){
+  constructor() {
     super();
     this.state = {
-      name: '',
-      price: '',
-      quantity: '',
+      cart: []
     }
   }
 
-  getItem(){
-    var self = this;
-    AsyncStorage.multiGet(['name', 'price','quantity']).then((data) => {
-      let name = data[0][1];
-      let price = data[1][1];
-      let quantity = data[2][1];
-      self.setState({name: name, price: price, quantity: quantity,})
+  componentWillMount() {
+    var self = this
+    AsyncStorage.getItem('cart').then((_cart) => {
+      if (_cart) {
+        self.setState({cart: JSON.parse(_cart)});
+      }
     })
-    .catch(function (error) {
-      console.log(error);
-    });
-
   }
 
-  calculate(){
-    let price = this.state.price;
-    let quantity = this.state.quantity;
-    let amount = price*quantity;
-    return(
-      amount
-    );
+  calculateAmount(price, quantity) {
+    return price * quantity;
   }
 
   render() {
+
+    let lineItems = this.state.cart.map((item) => {
+      return (
+        <View style={styles.productDescription}>
+          <Text>
+            {item.name}
+          </Text>
+          <Text>
+            {item.quantity}
+          </Text>
+          <Text>
+            {item.price}
+          </Text>
+          <Text>
+            {this.calculateAmount(item.price, item.quantity)}
+          </Text>
+        </View>
+      )
+    })
+
     return (
       <Image source={require('../../images/cakeBg.jpg')} style={styles.cartImage}>
         <View style={styles.cart}>
@@ -60,46 +67,32 @@ export default class Cart extends Component {
             </Text>
           </View>
 
-          <View style={styles.productDescription}>
-            <Text>
-              {this.state.name}
-            </Text>
-            <Text>
-              {this.state.quantity}
-            </Text>
-            <Text>
-              {this.state.price}
-            </Text>
-            <Text>
-              {this.calculate()}
-            </Text>
-          </View>
-
+          {lineItems}
         </View>
       </Image>
     );
   }
 }
 
-const styles= StyleSheet.create({
+const styles = StyleSheet.create({
   cartImage: {
     height: '100%',
     width: '100%',
   },
 
   cart: {
-    flex:1,
+    flex: 1,
 
   },
 
-  description:{
+  description: {
     flexDirection: 'row',
     marginHorizontal: 5,
     justifyContent: 'space-around',
     backgroundColor: 'rgba(255,255,255,0.7)',
   },
 
-  productDescription:{
+  productDescription: {
     flexDirection: 'row',
     margin: 5,
     justifyContent: 'space-around',

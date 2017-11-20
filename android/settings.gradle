@@ -1,3 +1,5 @@
 rootProject.name = 'MandalaBakery'
+include ':react-native-sim-data'
+project(':react-native-sim-data').projectDir = new File(rootProject.projectDir, '../node_modules/react-native-sim-data/android')
 
 include ':app'

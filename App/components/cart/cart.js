@@ -3,10 +3,15 @@ import {
   AppRegistry,
   StyleSheet,
   Text,
-  View, Image, AsyncStorage,
+  Alert,
+  View,
+  Image,
+  AsyncStorage,
   TouchableNativeFeedback
 } from 'react-native';
+import cartService from '../../services/CartService';
 
+let totalPrice = 0;
 export default class Cart extends Component {
 
   constructor() {
@@ -31,13 +36,19 @@ export default class Cart extends Component {
   }
 
   placeOrder() {
-    AsyncStorage.removeItem('cart');
-    this.setState({cart: []})
+
+    cartService.placeOrder(this.state.cart, totalPrice).then(() => {
+      Alert.alert('Success!', `Your order has been placed successfully, you will receive a confirmation call from us in few minutes.`)
+      AsyncStorage.removeItem('cart');
+      totalPrice = 0;
+      this.setState({cart: []})
+    }).catch((e) => {
+      Alert.alert('Error', 'Your order could not be placed, please try again.')
+    });
+
   }
 
   render() {
-    console.log(this.state.cart)
-    let totalPrice = 0;
     let lineItems = this.state.cart.map((item, index) => {
       let itemCost = this.calculateAmount(item.price, item.quantity);
       totalPrice += itemCost;

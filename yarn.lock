@@ -2,6 +2,16 @@
 # yarn lockfile v1
 
 
+"@types/react-native@*":
+  version "0.50.7"
+  resolved "https://registry.yarnpkg.com/@types/react-native/-/react-native-0.50.7.tgz#4c18bb14aa08f11934f539d2b8dcb2f1a6b88bd8"
+  dependencies:
+    "@types/react" "*"
+
+"@types/react@*":
+  version "16.0.25"
+  resolved "https://registry.yarnpkg.com/@types/react/-/react-16.0.25.tgz#bf696b83fe480c5e0eff4335ee39ebc95884a1ed"
+
 abab@^1.0.3:
   version "1.0.3"
   resolved "https://registry.yarnpkg.com/abab/-/abab-1.0.3.tgz#b81de5f7274ec4e756d797cd834f303642724e5d"
@@ -3250,6 +3260,12 @@ react-native-side-menu@^1.0.2:
   resolved "https://registry.yarnpkg.com/react-native-side-menu/-/react-native-side-menu-1.0.2.tgz#863f8bb253b7512c8c62cefc477aecd653383ddb"
   dependencies:
     prop-types "^15.5.10"
+
+react-native-sim-data@^2.0.3:
+  version "2.0.3"
+  resolved "https://registry.yarnpkg.com/react-native-sim-data/-/react-native-sim-data-2.0.3.tgz#ca1d458b9187905e4f14afbf0191d0bbf5aa3142"
+  optionalDependencies:
+    "@types/react-native" "*"
 
 react-native-simple-radio-button@^2.6.1:
   version "2.6.1"

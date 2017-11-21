@@ -4,6 +4,8 @@ import {
   StyleSheet,
   Text,
   View,
+  Alert,
+  AsyncStorage,
   TextInput,
   Button, TouchableNativeFeedback, TouchableOpacity, Image
 } from 'react-native';
@@ -14,67 +16,65 @@ export default class Login extends Component {
     super();
     this.login = this.login.bind(this)
     this.state = {
-      email: 'user1@gmail.com',
-      password: 'mandala123',
+      phone: '',
+      password: '',
     }
   }
 
   login() {
     let loginData = {
-      email: this.state.email,
+      phone: this.state.phone,
       password: this.state.password,
     };
     userService.login(loginData).then((result) => {
-      AsyncStorage.multiSet([
-        ["id", result.data.id]
-        ["email", result.data.email]
-      ])
+      AsyncStorage.setItem('currentUser', JSON.stringify(result.data));
+      debugger
     })
-    .catch(function (error) {
-      console.log(error);
-    });
+      .catch(function (error) {
+        Alert.alert("", "Incorrect username or password. Please try again.")
+        console.log(error);
+      });
   }
 
   render() {
     return (
-    <Image source={require('../../images/coffeeBg1.jpg')} style={styles.login}>
-      <Image source={require('../../images/mandalaBakery.jpg')}
-             style={styles.image}/>
+      <Image source={require('../../images/coffeeBg1.jpg')} style={styles.login}>
+        <Image source={require('../../images/mandalaBakery.jpg')}
+               style={styles.image}/>
 
-      <View style={styles.text}>
+        <View style={styles.text}>
 
-        <TextInput style={styles.textInput} placeholder="E-mail"
-                   value={this.state.email}
-                   underlineColorAndroid={'rgba(0,0,0,0)'}
-                   onChangeText={(mobileNumber) => this.setState({mobileNumber})}/>
-        <TextInput style={styles.textInput} placeholder="Password"
-                   value={this.state.password} secureTextEntry={true}
-                   underlineColorAndroid={'rgba(0,0,0,0)'}
-                   onChangeText={(password) => this.setState({password})}/>
+          <TextInput style={styles.textInput} placeholder="Phone"
+                     underlineColorAndroid={'rgba(0,0,0,0)'}
+                     onChangeText={(phone) => this.setState({phone})}/>
+          <TextInput style={styles.textInput} placeholder="Password"
+                     secureTextEntry={true}
+                     underlineColorAndroid={'rgba(0,0,0,0)'}
+                     onChangeText={(password) => this.setState({password})}/>
 
-        <TouchableNativeFeedback useForeground={true}>
-          <View style={styles.signIn}>
-            <Text
-            style={{textAlign: 'center', paddingVertical: 5, fontSize: 15}}
-            onPress={this.login}>Sign in</Text>
+          <TouchableNativeFeedback useForeground={true}>
+            <View style={styles.signIn}>
+              <Text
+                style={{textAlign: 'center', paddingVertical: 5, fontSize: 15}}
+                onPress={this.login}>Sign in</Text>
+            </View>
+          </TouchableNativeFeedback>
+        </View>
+
+        <TouchableNativeFeedback useForeground={true}
+                                 onPress={() => this.props.navigation.navigate('Register')}>
+          <View style={styles.registerContainer}>
+            <View style={styles.notMember}>
+              <Text style={{textAlign: 'center'}}>Not a member yet?</Text>
+            </View>
+            <View style={styles.register}>
+              <Text
+                style={{textAlign: 'center', paddingVertical: 5}}>Register</Text>
+            </View>
           </View>
         </TouchableNativeFeedback>
-      </View>
 
-      <TouchableNativeFeedback useForeground={true}
-                               onPress={() => this.props.navigation.navigate('Register')}>
-        <View style={styles.registerContainer}>
-          <View style={styles.notMember}>
-            <Text style={{textAlign: 'center'}}>Not a member yet?</Text>
-          </View>
-          <View style={styles.register}>
-            <Text
-            style={{textAlign: 'center', paddingVertical: 5}}>Register</Text>
-          </View>
-        </View>
-      </TouchableNativeFeedback>
-
-    </Image>
+      </Image>
     );
   }
 }

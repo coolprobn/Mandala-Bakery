@@ -86,8 +86,8 @@ export default class ProductItem extends Component {
   }
 
   addToCartView() {
-    let {id, cakes} = this.props;
-    let cake = cakes.find((cake) => {
+    let {id, items} = this.props;
+    let cake = items.find((cake) => {
       return cake.id == id;
     });
     let starCount = 0;

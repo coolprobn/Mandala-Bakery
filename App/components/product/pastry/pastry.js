@@ -15,23 +15,23 @@ export default class Pastry extends Component {
         <ScrollView>
           <View style={styles.vertical}>
             <View style={styles.horizontal} >
-              <ProductItem name="Pineapple" price={100} image="pineapplePastry" category="pastry" weight="per piece"/>
-              <ProductItem name="Black Forest" price={120} image="blackForestPastry" category="pastry" weight="per piece"/>
+              <ProductItem items={[]} name="Pineapple" price={100} image="pineapplePastry" category="pastry" weight="per piece"/>
+              <ProductItem items={[]} name="Black Forest" price={120} image="blackForestPastry" category="pastry" weight="per piece"/>
             </View>
 
             <View style={styles.horizontal}>
-              <ProductItem name="White Forest" price={120} image="whiteForestPastry" category="pastry" weight="per piece"/>
-              <ProductItem name="Chocolate" price={110} image="chocolatePastry" category="pastry" weight="per piece"/>
+              <ProductItem items={[]} name="White Forest" price={120} image="whiteForestPastry" category="pastry" weight="per piece"/>
+              <ProductItem items={[]} name="Chocolate" price={110} image="chocolatePastry" category="pastry" weight="per piece"/>
             </View>
 
             <View style={styles.horizontal}>
-              <ProductItem name="Vanilla" price={100} image="vanillaPastry" category="pastry" weight="per piece"/>
-              <ProductItem name="Strawberry" price={100} image="strawberryPastry" category="pastry" weight="per piece"/>
+              <ProductItem items={[]} name="Vanilla" price={100} image="vanillaPastry" category="pastry" weight="per piece"/>
+              <ProductItem items={[]} name="Strawberry" price={100} image="strawberryPastry" category="pastry" weight="per piece"/>
             </View>
 
             <View style={styles.horizontal}>
-              <ProductItem name="Mocha" price={115} image="mochaPastry" category="pastry" weight="per piece"/>
-              <ProductItem name="Mango" price={110} image="mangoPastry" category="pastry" weight="per piece"/>
+              <ProductItem items={[]} name="Mocha" price={115} image="mochaPastry" category="pastry" weight="per piece"/>
+              <ProductItem items={[]} name="Mango" price={110} image="mangoPastry" category="pastry" weight="per piece"/>
             </View>
           </View>
         </ScrollView>

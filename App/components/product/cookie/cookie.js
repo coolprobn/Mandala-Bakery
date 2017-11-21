@@ -15,13 +15,13 @@ export default class Cookie extends Component {
         <ScrollView>
           <View style={styles.vertical}>
             <View style={styles.horizontal} >
-              <ProductItem name="Cookie" price={180} image="cookie" category="cookie" weight="per package(200 gm)"/>
-              <ProductItem name="Peanut Butter" price={180} image="peanutButterCookie" category="cookie" weight="per package(200 gm)"/>
+              <ProductItem items={[]} name="Cookie" price={180} image="cookie" category="cookie" weight="per package(200 gm)"/>
+              <ProductItem items={[]} name="Peanut Butter" price={180} image="peanutButterCookie" category="cookie" weight="per package(200 gm)"/>
             </View>
 
             <View style={styles.horizontal}>
-              <ProductItem name="Cashew Nut" price={180} image="cashewNutCookie" category="cookie" weight="per package(200 gm)"/>
-              <ProductItem name="Chocolate" price={180} image="chocoCookie" category="cookie" weight="per package(200 gm)"/>
+              <ProductItem items={[]} name="Cashew Nut" price={180} image="cashewNutCookie" category="cookie" weight="per package(200 gm)"/>
+              <ProductItem items={[]} name="Chocolate" price={180} image="chocoCookie" category="cookie" weight="per package(200 gm)"/>
             </View>
           </View>
         </ScrollView>
